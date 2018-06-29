@@ -10,6 +10,7 @@
 #import "MovieCell.h"
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "MovieCollectionCell.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -49,6 +50,16 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Movie Error"
+                                                                    message:@"The internet connection appears to be offline"
+                                                             preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction * acceptNetworkFailure= [UIAlertAction actionWithTitle:@"Cancel" style: UIAlertActionStyleDefault handler: ^ (UIAlertAction* _Nonnull action){
+                
+            }];
+            [alert addAction:acceptNetworkFailure];
+            [self presentViewController: alert animated: YES completion:^{
+            }];
+            
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -93,12 +104,28 @@
     NSString *posterURLString=movie[@"poster_path"];
     NSString *fullPosterURLString= [baseURLString stringByAppendingString:posterURLString];
     NSURL * posterURL = [NSURL URLWithString:fullPosterURLString];
-    cell.imageLab.image=nil;
-    [cell.imageLab setImageWithURL: posterURL];
+    NSURLRequest * request =[NSURLRequest requestWithURL: posterURL];
+    __weak MovieCell *weakCell = cell;
+    
+    [cell.imageLab setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
+        if (imageResponse) {
+            NSLog(@"Image was NOT cached, fade in image");
+            weakCell.imageLab.alpha = 0;
+            weakCell.imageLab.image = image;
+            [UIView animateWithDuration:2 animations:^{
+                weakCell.imageLab.alpha = 1.0;
     
 
+                
+            }];
+        } else {
+                NSLog(@"Image was cached so just update the image");
+                weakCell.imageLab.image = image;
+        }
+    }
+      failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
     
-    
+    }];
     return cell;
 }
 

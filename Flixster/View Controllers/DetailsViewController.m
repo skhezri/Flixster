@@ -10,6 +10,9 @@
 #import "UIImageView+AFNetworking.h"
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *votingAverageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *avgNumLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
@@ -38,6 +41,11 @@
     
     self.titleLabel.text=self.movie[@"title"];
     self.synopsisLabel.text=self.movie[@"overview"];
+    self.releaseDateLabel.text=self.movie[@"release_date"];
+    NSNumber * voteNum= self.movie[@"vote_average"];
+    self.avgNumLabel.text= [voteNum stringValue];
+    
+    self.votingAverageLabel.text=@"Voting Average:";
     
     [self.titleLabel sizeToFit];
      [self.synopsisLabel sizeToFit];
