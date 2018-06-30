@@ -2,7 +2,7 @@
 
 FLIXSTER is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: 15 hours spent in total
 
 ## User Stories
 
@@ -27,34 +27,42 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
+[X] Can access details view through the grid layout
+[X] Display release date on details page
+[X] Display average rating  on details page
+
 - [ ] List anything else that you can get done to improve the app functionality!
+        -Play the movie trailer once the user taps on the poster cell
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Segue 
+2. implementation of APIs
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/a/JusIjLU.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+In the beginning, I kept making small mistakes and errors that would affect the entire program (such as a blank screen with scrollable rows). I had some trouble learning how to implement a fade and understanding a weak cell. Additionally, throughout this entire project I wanted to fully understand the concepts rather than just follow the video. Thus, it was very frustrating at times when I could not grasp a thorough understanding as to how certain features work within the application and connect to one another.  
 
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
+-[3 line icon](https://iconmonstr.com/menu-thin-svg/)
+-[Grid icon](https://iconmonstr.com/view-5-svg/)
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright 2018 Sophia Khezri 
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
