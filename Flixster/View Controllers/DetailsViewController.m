@@ -32,8 +32,6 @@
     NSURL * posterURL = [NSURL URLWithString:fullPosterURLString];
     [self.posterView setImageWithURL:posterURL];
     
-                         
-
     NSString *backgroundURLString=self.movie[@"backdrop_path"];
     NSString *fullBackgroundURLString= [baseURLString stringByAppendingString: backgroundURLString];
     NSURL * backgroundURL = [NSURL URLWithString:fullBackgroundURLString];

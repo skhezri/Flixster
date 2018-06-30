@@ -66,7 +66,7 @@
             
             self.movies= dataDictionary[@"results"];
              self.filteredMovies=self.movies;
-            for(NSDictionary *movie in self.movies){
+            for(NSDictionary *movie in self.filteredMovies){
                 NSLog(@"%@" ,movie[@"title"]);
             }
             
@@ -149,7 +149,7 @@
     
     UITableViewCell * tappedCell= sender;
     NSIndexPath * indexPath=[self.tableView indexPathForCell:tappedCell];
-    NSDictionary * movie= self.movies[indexPath.row];
+    NSDictionary * movie= self.filteredMovies[indexPath.row];
     DetailsViewController * detailsViewControl=[segue destinationViewController];
     detailsViewControl.movie=movie;
 }

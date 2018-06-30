@@ -48,6 +48,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.filteredMovies.count;
     
@@ -69,9 +70,7 @@
             self.filteredMovies=self.movies;
             [self.collectionView reloadData];
             [self.activityIndicator stopAnimating];
-            
-            
-            
+        
             // TODO: Get the array of movies
             // TODO: Store the movies in a property to use elsewhere
             // TODO: Reload your table view data
@@ -93,10 +92,12 @@
     
     UITableViewCell * tappedCell= sender;
     NSIndexPath * indexPath=[self.collectionView indexPathForCell:tappedCell];
-    NSDictionary * movie= self.movies[indexPath.item];
+    NSDictionary * movie= self.filteredMovies[indexPath.item];
     DetailsViewController * detailsViewControl=[segue destinationViewController];
     detailsViewControl.movie=movie;
 }
+
+
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MovieCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:(@"MovieCollectionCell") forIndexPath:indexPath];
     NSDictionary * movie=self.filteredMovies[indexPath.item];
@@ -116,8 +117,8 @@
                    cell.posterView.alpha = 1.0;
                 }];
         }
-                                      failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
-                                      }];
+        failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
+        }];
     
     return cell;
 }
